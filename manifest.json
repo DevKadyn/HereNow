@@ -1,0 +1,16 @@
+{
+  "name": "HereNow",
+  "short_name": "HereNow",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "background_color": "#2A3443",
+  "description": "Simple Weather For Where You Are At!",
+  "theme_color": "#050a0d",
+  "icons": [
+    {
+      "src": "media/icons/ms-icon-310x310.png",
+      "sizes": "310x310",
+      "type": "image/png"
+    }
+  ]
+}
