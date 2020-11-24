@@ -174,12 +174,12 @@ var myLat = 0;
         //Grab Today's Current Temp
         var rawTemp = response.data.main.temp;
         var cleanTemp = rawTemp.toFixed();
-        document.getElementById('currentTemp').innerHTML = cleanTemp + "°";
+        document.getElementById('currentTemp').innerHTML = cleanTemp + "°F";
 
         //Grab Today's Feels Like Temp
         var rawFeelsLike = response.data.main.feels_like;
         var cleanFeelsLike= rawFeelsLike.toFixed();
-        document.getElementById('feelsLikeTemp').innerHTML = "Feels Like " + cleanFeelsLike + "°";
+        document.getElementById('feelsLikeTemp').innerHTML = "Feels Like " + cleanFeelsLike + "°F";
 
         //Grab Today's High Weather
         var rawHigh = response.data.main.temp_max;
