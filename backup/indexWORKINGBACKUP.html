@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Meta Data -->
+  <title>JustHere</title>
+  <meta name="author" content="Kadyn Wishcop">
+  <meta name="description" content="OhWeather App">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+
+  <!-- Load CSS & JS Files -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Web App manifest -->
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="/app.js"></script>
+
+  <!-- Saved Stuff -->
+  <!-- https://openweathermap.org/weathermap?basemap=map&cities=true&layer=radar&lat=45.06&lon=-93.14&zoom=10 -->
+</head>
+<body>
+  <!-- Main Weather Container -->
+  <div id="mainContainer">
+    <div class="buttonStyle" id="settingsButton" onClick="settingsOpen()"><img src="media/buttonicons/menuBars.png" width="52px" height="45px"></div>
+    <div class="" id="currentCity"></div>
+    <div class="" id="lastUpdate"></div>
+    <hr class="lineBreak">
+    <img class="" id="weatherIcon" src="" width="" height="">
+        <div class="" id="currentConditions"></div>
+    <hr class="lineBreak">
+    <div class="" id="highTemp"></div>
+    <div class="" id="currentTemp"></div>
+    <div class="" id="lowTemp"></div>
+    <div class="" id="feelsLikeTemp"></div>
+    <hr class="lineBreak">
+    <div class="" id="currentWind"></div>
+    <hr class="lineBreak">
+    <div class="" id="theSun"></div>
+  </div>
+
+  <!-- Forecast Weather Container -->
+  <div id="forecastContainer">
+
+  </div>
+
+  <!-- Settings Container -->
+  <div id="settingsContainer">
+    <div class="buttonStyle animate__rotateIn" id="exitButton" onClick="weatherOpen()"><img src="media/buttonicons/exitIcon.png" width="52px" height="52px"></div>
+    <div class="baseTitle">About</div>
+    <div class="baseText">JustHere is a simple PWA App which can easily be viewed for a web browser or installed from your browser onto your phones home screen for easy access. This app was built to get you the information you need, quickly for your current location.</div>
+    <hr class="lineBreak">
+    <div class="baseTitle">Data</div>
+    <div class="baseText">Weather information is pulled from OpenWeatherMap API. JustHere does not track you or any of your data. We simply grab your GPS data to grab the correct weather for you.</div>
+    <hr class="lineBreak">
+    <div class="baseTitle">Version</div>
+    <div class="baseText" style = "text-align: center">JustHere Release 1.0</div>
+    <hr class="lineBreak">
+  </div>
+
+
+  <!-- START SCRIPTS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+
+  //Set Storage
+  var storage = window.localStorage;
+
+  //Run Functions
+  //checkSavedData();
+  //loadDate();
+  //loadTime();
+  //loadOWMAPICurrent(); //Grabs Data from Current File || 86,400 a Day || 60 a Minute
+  //loadOWMAPIOneCall(); //Grabs Data from One Call || 1,000 a Day
+  //checkServiceWorker();
+
+
+  //
+
+  //Page Changes
+  //Show Settings Page
+  function settingsOpen() {
+    console.log("Showing settings...")
+    $("#mainContainer").css("display","none");
+    $("#settingsContainer").css("display","block");
+  }
+
+  //Show Weather Page
+  function weatherOpen() {
+    console.log("Showing weather...")
+    $("#mainContainer").css("display","block");
+    $("#settingsContainer").css("display","none");
+  }
+
+  //Run Function to Check Local Storage Data
+  function checkSavedData() {
+    var getUserName = localStorage.getItem('localUserName');
+    if(getUserName === null){
+    	localStorage.setItem('localUserName','Friend!');
+    	}
+    else{
+    }
+    document.getElementById('greetingsTag').innerHTML = "Hello,<br>"  + getUserName;
+  }
+
+
+  //Run Function to Grab Current Year to Date
+  function loadDate(){
+    //Load Today's Day
+    var day = new Date();
+    var rawDay  =  new Array(7);
+      rawDay[0] = "Sunday";
+      rawDay[1] = "Monday";
+      rawDay[2] = "Tuesday";
+      rawDay[3] = "Wednesday";
+      rawDay[4] = "Thursday";
+      rawDay[5] = "Friday";
+      rawDay[6] = "Saturday";
+    var loadDay = rawDay[day.getDay()];
+    //Load Today's Date
+    var date = new Date();
+    var loadDate  =  date.getDate();
+    //Load Today's Month
+    var month = new Date();
+    var rawMonth = new Array(12);
+      rawMonth[0] = "January";
+      rawMonth[1] = "February";
+      rawMonth[2] = "March";
+      rawMonth[3] = "April";
+      rawMonth[4] = "May";
+      rawMonth[5] = "June";
+      rawMonth[6] = "July";
+      rawMonth[7] = "August";
+      rawMonth[8] = "September";
+      rawMonth[9] = "October";
+      rawMonth[10] = "November";
+      rawMonth[11] = "December";
+    var loadMonth = rawMonth[month.getMonth()];
+
+    //Load Today's Years
+    var year = new Date();
+    var loadYear = year.getFullYear();
+
+    document.getElementById('currentDay').innerHTML = loadDay;
+    document.getElementById('currentMonth').innerHTML = loadMonth + " " + loadDate;
+    document.getElementById('currentYear').innerHTML = loadYear;
+  }
+
+
+  //Run Function to Grab Current Time
+  function loadTime () {
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    document.getElementById('currentTime').innerHTML = strTime;
+  }
+
+  function checkGeoLocation() {
+    if ("geolocation" in navigator) {
+      $('.js-geolocation').show();
+      console.log("GeoLocation Found...")
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log("Running GeoLocation in Navigator...")
+      });
+    } else {
+      $('.js-geolocation').hide();
+      console.log("No GeoLocation Found...")
+    }
+  }
+
+
+  //Run OpenWeatherMap API for Weather DAta
+  function loadOWMAPICurrent () {
+    var zipCode = 55126;
+    const currentAPIKey = "61bd3d48471f508fa7cd4799235d2c38";
+
+    //Check for Geo-Location support for Browser Testing
+    if ("geolocation" in navigator) {
+        $('.js-geolocation').show();
+        console.log("GeoLocation Found...")
+
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+          console.log("Running GeoLocation in Navigator...")
+          var latPos = position.coords.latitude;
+          var lonPos = position.coords.longitude;
+
+          //GET Rest API for Current Weather
+          axios //Node.js Element that is able to pull in API Get requests.
+            //OpenWeatherMap Zip Code Location
+            //.get("http://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + "&appid=" + apiKey + "&units=imperial")
+
+            //OpenWeatherMap Lat and Lon Location OneCall
+            //.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + latPos + "&lon=" + lonPos + "&appid=" + currentAPIKey + "&units=imperial")
+
+            //OpenWeatherMap Lat and Lon Location Current
+            .get("https://api.openweathermap.org/data/2.5/weather?lat=" + latPos + "&lon=" + lonPos + "&appid=" + currentAPIKey + "&units=imperial")
+            .then(response => {
+              console.log(response.data);
+
+              //Grab Current City Name
+              var currentLocationName = response.data.name;
+              document.getElementById('currentCity').innerHTML = currentLocationName;
+
+              //Grab OpenWeatherMap Update timeout
+              var rawLastUpdate = response.data.dt;
+              console.log("Raw - " + rawLastUpdate);
+              var dateLastUpdate = new Date(rawLastUpdate * 1000);
+              console.log("Full - " + dateLastUpdate);
+              cleanLastUpdate = dateLastUpdate.toLocaleTimeString('en-US',{ hour: '2-digit', minute: '2-digit' });
+              console.log("Clean - " + cleanLastUpdate);
+
+              document.getElementById('lastUpdate').innerHTML = "Last Updated: " + cleanLastUpdate;
+
+              //Grab Today's Current Weather Icon
+              //Pull Icons Locally
+              var weatherIcon = response.data.weather[0].icon;
+              document.getElementById('weatherIcon').src = "media/weathericons/" + weatherIcon + ".png";
+              //Pull Icons From OpenWeatherMap
+              //document.getElementById('weatherIcon').src = "http://openweathermap.org/img/wn/" + weatherIcon + "@4x.png";
+
+              //Grab Today's Current Weather Condition
+              var weatherDescription = response.data.weather[0].description;
+              document.getElementById('currentConditions').innerHTML = weatherDescription;
+
+              //Grab Today's Current Temp
+              var rawTemp = response.data.main.temp;
+              var cleanTemp = rawTemp.toFixed();
+              document.getElementById('currentTemp').innerHTML = cleanTemp + "°";
+
+              //Grab Today's Feels Like Temp
+              var rawFeelsLike = response.data.main.feels_like;
+              var cleanFeelsLike= rawFeelsLike.toFixed();
+              document.getElementById('feelsLikeTemp').innerHTML = "Feels Like " + cleanFeelsLike + "°";
+
+              //Grab Today's High Weather
+              var rawHigh = response.data.main.temp_max;
+              var cleanHigh = rawHigh.toFixed();
+              document.getElementById('highTemp').innerHTML =  cleanHigh + '  <img src="media/buttonicons/highIcon.png"  width="60px" height="60px"/>';
+
+              //Grab Today's Low Weather
+              var rawLow = response.data.main.temp_min;
+              var cleanLow = rawLow.toFixed();
+              document.getElementById('lowTemp').innerHTML = cleanLow + '  <img src="media/buttonicons/lowIcon.png"  width="60px" height="60px"/>';
+
+              //Grab Today's Current Wind Speed and Direction
+              //Wind Speed
+              var rawWindSpeed = response.data.wind.speed;
+              var cleanWindSpeed = rawWindSpeed.toFixed();
+
+              //Wind Direction
+              var rawWindDirection = response.data.wind.deg;
+              if (rawWindDirection>11.25 && rawWindDirection<33.75){
+                cleanWindDirection =  "NNE";
+              }
+              else if (rawWindDirection>33.75 && rawWindDirection<56.25){
+                cleanWindDirection =  "ENE";
+              }
+              else if (rawWindDirection>56.25 && rawWindDirection<78.75){
+                cleanWindDirection =  "E";
+              }
+              else if (rawWindDirection>78.75 && rawWindDirection<101.25){
+                cleanWindDirection =  "ESE";
+              }
+              else if (rawWindDirection>101.25 && rawWindDirection<123.75){
+                cleanWindDirection =  "ESE";
+              }
+              else if (rawWindDirection>123.75 && rawWindDirection<146.25){
+                cleanWindDirection =  "SE";
+              }
+              else if (rawWindDirection>146.25 && rawWindDirection<168.75){
+                cleanWindDirection =  "SSE";
+              }
+              else if (rawWindDirection>168.75 && rawWindDirection<191.25){
+                cleanWindDirection =  "S";
+              }
+              else if (rawWindDirection>191.25 && rawWindDirection<213.75){
+                cleanWindDirection =  "SSW";
+              }
+              else if (rawWindDirection>213.75 && rawWindDirection<236.25){
+                cleanWindDirection =  "SW";
+              }
+              else if (rawWindDirection>236.25 && rawWindDirection<258.75){
+                cleanWindDirection =  "WSW";
+              }
+              else if (rawWindDirection>258.75 && rawWindDirection<281.25){
+                cleanWindDirection =  "W";
+              }
+              else if (rawWindDirection>281.25 && rawWindDirection<303.75){
+                cleanWindDirection =  "WNW";
+              }
+              else if (rawWindDirection>303.75 && rawWindDirection<326.25){
+                cleanWindDirection =  "NW";
+              }
+              else if (rawWindDirection>326.25 && rawWindDirection<348.75){
+                cleanWindDirection =  "NNW";
+              }
+              else{
+                cleanWindDirection =  "N";
+              }
+
+              document.getElementById('currentWind').innerHTML = '<img src="media/buttonicons/windIcon.png"  width="60px" height="52px"/> ' + cleanWindDirection+ " " + cleanWindSpeed + 'mph';
+
+
+              //Sunrise and Sunset
+              var rawSunrise = response.data.sys.sunrise;
+              var dateSunrise = new Date(rawSunrise * 1000)
+              cleanSunrise = dateSunrise.toLocaleTimeString('en-US',{ hour: '2-digit', minute: '2-digit' });
+
+              var rawSunset = response.data.sys.sunset;
+              var dateSunset = new Date(rawSunset * 1000)
+              cleanSunset = dateSunset.toLocaleTimeString('en-US',{ hour: '2-digit', minute: '2-digit' });
+
+              document.getElementById('theSun').innerHTML = cleanSunrise + "          " + '<img src="media/buttonicons/sunrise.png" id="sunRise" width="60px" height="53px"/>' + "          " + '<img src="media/buttonicons/sunset.png" id="sunSet" width="60px" height="53px"/>' + "          " +  cleanSunset ;
+
+            })
+            .catch(error => console.error(error));
+
+        });
+
+
+
+
+    } else {
+      $('.js-geolocation').hide();
+      console.log("No GeoLocation Found...")
+    }
+  } //End of Load OpenWeatherMap Data
+
+  function loadOWMAPIOneCall () {
+    var zipCode = 55126;
+    const currentAPIKey = "61bd3d48471f508fa7cd4799235d2c38";
+
+    //Check for Geo-Location support for Browser Testing
+    if ("geolocation" in navigator) {
+        $('.js-geolocation').show();
+        console.log("GeoLocation Found...")
+
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+          console.log("Running GeoLocation in Navigator...")
+          var latPos = position.coords.latitude;
+          var lonPos = position.coords.longitude;
+
+          //GET Rest API for Current Weather
+          axios //Node.js Element that is able to pull in API Get requests.
+
+            //OpenWeatherMap Lat and Lon Location OneCall
+            .get("https://api.openweathermap.org/data/2.5/onecall?lat=" + latPos + "&lon=" + lonPos + "&appid=" + currentAPIKey + "&units=imperial")
+
+            .then(response => {
+              console.log(response.data);
+
+              //Grab Current City Name
+              //var currentLocationName = response.data.name;
+              //document.getElementById('currentCity').innerHTML = currentLocationName;
+
+              //Grab OpenWeatherMap Update timeout
+              var rawLastUpdate = response.data.current.dt;
+              console.log("Raw - " + rawLastUpdate);
+              var dateLastUpdate = new Date(rawLastUpdate * 1000);
+              console.log("Full - " + dateLastUpdate);
+              cleanLastUpdate = dateLastUpdate.toLocaleTimeString('en-US',{ hour: '2-digit', minute: '2-digit' });
+              console.log("Clean - " + cleanLastUpdate);
+
+              document.getElementById('lastUpdate').innerHTML = "Last Updated: " + cleanLastUpdate;
+
+              //Grab Today's Current Weather Icon
+              //Pull Icons Locally
+              var weatherIcon = response.data.current.weather[0].icon;
+              document.getElementById('weatherIcon').src = "media/weathericons/" + weatherIcon + ".png";
+              //Pull Icons From OpenWeatherMap
+              //document.getElementById('weatherIcon').src = "http://openweathermap.org/img/wn/" + weatherIcon + "@4x.png";
+
+              //Grab Today's Current Weather Condition
+              var weatherDescription = response.data.current.weather[0].description;
+              document.getElementById('currentConditions').innerHTML = weatherDescription;
+
+              //Grab Today's Current Temp
+              var rawTemp = response.data.current.temp;
+              var cleanTemp = rawTemp.toFixed();
+              document.getElementById('currentTemp').innerHTML = cleanTemp + "°";
+
+              //Grab Today's Feels Like Temp
+              var rawFeelsLike = response.data.current.feels_like;
+              var cleanFeelsLike= rawFeelsLike.toFixed();
+              document.getElementById('feelsLikeTemp').innerHTML = "Feels Like " + cleanFeelsLike + "°";
+
+              //Grab Today's High Weather
+              var rawHigh = response.data.daily[0].temp.max;
+              var cleanHigh = rawHigh.toFixed();
+              document.getElementById('highTemp').innerHTML =  cleanHigh + '  <img src="media/buttonicons/highIcon.png"  width="60px" height="60px"/>';
+
+              //Grab Today's Low Weather
+              var rawLow = response.data.daily[0].temp.min;
+              var cleanLow = rawLow.toFixed();
+              document.getElementById('lowTemp').innerHTML = cleanLow + '  <img src="media/buttonicons/lowIcon.png"  width="60px" height="60px"/>';
+
+              //Grab Today's Current Wind Speed and Direction
+              //Wind Speed
+              var rawWindSpeed = response.data.current.wind_speed;
+              var cleanWindSpeed = rawWindSpeed.toFixed();
+
+              //Wind Direction
+              var rawWindDirection = response.data.current.wind_deg;
+              if (rawWindDirection>11.25 && rawWindDirection<33.75){
+                cleanWindDirection =  "NNE";
+              }
+              else if (rawWindDirection>33.75 && rawWindDirection<56.25){
+                cleanWindDirection =  "ENE";
+              }
+              else if (rawWindDirection>56.25 && rawWindDirection<78.75){
+                cleanWindDirection =  "E";
+              }
+              else if (rawWindDirection>78.75 && rawWindDirection<101.25){
+                cleanWindDirection =  "ESE";
+              }
+              else if (rawWindDirection>101.25 && rawWindDirection<123.75){
+                cleanWindDirection =  "ESE";
+              }
+              else if (rawWindDirection>123.75 && rawWindDirection<146.25){
+                cleanWindDirection =  "SE";
+              }
+              else if (rawWindDirection>146.25 && rawWindDirection<168.75){
+                cleanWindDirection =  "SSE";
+              }
+              else if (rawWindDirection>168.75 && rawWindDirection<191.25){
+                cleanWindDirection =  "S";
+              }
+              else if (rawWindDirection>191.25 && rawWindDirection<213.75){
+                cleanWindDirection =  "SSW";
+              }
+              else if (rawWindDirection>213.75 && rawWindDirection<236.25){
+                cleanWindDirection =  "SW";
+              }
+              else if (rawWindDirection>236.25 && rawWindDirection<258.75){
+                cleanWindDirection =  "WSW";
+              }
+              else if (rawWindDirection>258.75 && rawWindDirection<281.25){
+                cleanWindDirection =  "W";
+              }
+              else if (rawWindDirection>281.25 && rawWindDirection<303.75){
+                cleanWindDirection =  "WNW";
+              }
+              else if (rawWindDirection>303.75 && rawWindDirection<326.25){
+                cleanWindDirection =  "NW";
+              }
+              else if (rawWindDirection>326.25 && rawWindDirection<348.75){
+                cleanWindDirection =  "NNW";
+              }
+              else{
+                cleanWindDirection =  "N";
+              }
+
+              document.getElementById('currentWind').innerHTML = '<img src="media/buttonicons/windIcon.png"  width="60px" height="52px"/> ' + cleanWindDirection+ " " + cleanWindSpeed + 'mph';
+
+
+              //Sunrise and Sunset
+              var rawSunrise = response.data.current.sunrise;
+              var dateSunrise = new Date(rawSunrise * 1000)
+              cleanSunrise = dateSunrise.toLocaleTimeString('en-US',{ hour: '2-digit', minute: '2-digit' });
+
+              var rawSunset = response.data.current.sunset;
+              var dateSunset = new Date(rawSunset * 1000)
+              cleanSunset = dateSunset.toLocaleTimeString('en-US',{ hour: '2-digit', minute: '2-digit' });
+
+              document.getElementById('theSun').innerHTML = cleanSunrise + "          " + '<img src="media/buttonicons/sunrise.png" id="sunRise" width="60px" height="53px"/>' + "          " + '<img src="media/buttonicons/sunset.png" id="sunSet" width="60px" height="53px"/>' + "          " +  cleanSunset ;
+
+            })
+            .catch(error => console.error(error));
+
+        });
+
+    } else {
+      $('.js-geolocation').hide();
+      console.log("No GeoLocation Found...")
+    }
+  } //End of Load OpenWeatherMap Data
+
+
+  //Start Service Worker
+  function checkServiceWorker () {
+    if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/js/sw.js').then(function() {
+          console.log("Tada! Your service worker is now registered"); });
+    }
+  }//End of Service Worker
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+html {
+    height: 100%
+}
+
+body {
+  background-color: #050a0d;
+}
+
+.logoText {
+  position: absolute;
+  top: 75px;
+  left: 300px;
+  right: 300px;
+  font-family: Arial;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#mainContainer {
+  display: none;
+  margin: 150px;
+  max-height: 865px;
+}
+
+#settingsContainer {
+  display: none;
+  margin: 150px;
+  max-height: 865px;
+}
+
+.spacer {
+  padding-top: 2vh;
+}
+
+.lineBreak {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 5px;
+  width: 250px;
+  background-color: #FFFFFF;
+  border-width: 0;
+  border-radius: 5px;
+  clear: both;
+}
+
+.showLoadWait {
+  display: none;
+}
+
+.baseTitle {
+  font-family: Arial;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.baseText {
+  font-family: Arial;
+  font-size: 2vh;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.buttonStyle{
+
+}
+
+.themeButton {
+  width: 4vh;
+  height: 4vh;
+  display: block;
+  float: left;
+  margin: 25px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#settingsButton {
+  position: absolute;
+  top: 75px;
+  right: 75px;
+}
+#currentButton {
+  position: absolute;
+  bottom: 75px;
+  right: 50%;
+  margin-right: 50px;
+  text-align: center;
+}
+
+#forecastButton {
+  position: absolute;
+  bottom: 75px;
+  left: 50%;
+  margin-left: 50px;
+  text-align: center;
+}
+
+#exitButton {
+  position: absolute;
+  top: 75px;
+  right: 75px;
+}
+
+#currentCity {
+  font-family: Arial;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  padding-top: 2vh;
+}
+
+#lastUpdate {
+  font-family: Arial;
+  font-size: 2vh;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: center;
+  text-transform:capitalize;
+}
+
+#currentConditions {
+  font-family: Arial;
+  font-size: 2vh;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: center;
+  text-transform:capitalize;
+}
+
+#weatherIcon {
+  text-align: center;
+  width: 26vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#currentTemp {
+  font-family: Arial;
+  font-size: 12vh;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#highTemp, #lowTemp {
+  font-family: Arial;
+  font-size: 4vh;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#feelsLikeTemp {
+  font-family: Arial;
+  font-size: 2vh;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 50px;
+}
+
+#currentWind {
+  font-family: Arial;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#theSun {
+  font-family: Arial;
+  font-size: 2.5vh;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#sunRise {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+#sunSet {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+#weatherReload {
+  position: absolute;
+  bottom: 100px;
+  margin: auto;
+}
+
+.forecastDay {
+  font-family: Arial;
+  font-size: 2.5vh;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: center;
+}

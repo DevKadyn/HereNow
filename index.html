@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Meta Data -->
+  <title></title>
+  <meta name="author" content="Kadyn Wishcop">
+  <meta name="description" content="HereNow">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+
+  <!-- Load CSS & JS Files -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Web App manifest -->
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="/app.js"></script>
+
+  <!-- Saved Stuff -->
+  <!-- https://openweathermap.org/weathermap?basemap=map&cities=true&layer=radar&lat=45.06&lon=-93.14&zoom=10 -->
+</head>
+<body>
+  <!-- Main Weather Container -->
+  <div id="mainContainer">
+    <div class="logoText">HereNow</div>
+    <div class="buttonStyle" id="settingsButton" onClick="settingsOpen()"><img src="media/buttonicons/menuBars.png" width="52px" height="45px"></div>
+    <div class="" id="currentCity"></div>
+    <div class="" id="lastUpdate"></div>
+    <hr class="lineBreak">
+    <img class="" id="weatherIcon" src="" width="" height="">
+        <div class="" id="currentConditions"></div>
+    <hr class="lineBreak">
+    <div class="" id="highTemp"></div>
+    <div class="" id="currentTemp"></div>
+    <div class="" id="lowTemp"></div>
+    <div class="" id="feelsLikeTemp"></div>
+    <hr class="lineBreak">
+    <div class="" id="currentWind"></div>
+    <hr class="lineBreak">
+    <div class="" id="theSun"></div>
+  </div>
+
+  <!-- Settings Container -->
+  <div id="settingsContainer">
+    <div class="logoText">HereNow</div>
+    <div class="buttonStyle" id="exitButton" onClick="currentOpen()"><img src="media/buttonicons/exitIcon.png" width="52px" height="52px"></div>
+    <div class="baseTitle  spacer">About</div>
+    <div class="baseText">HereNow is a simple PWA App which can easily be viewed for a web browser or installed from your browser onto your phones home screen for easy access. This app was built to get you the information you need, quickly for your current location.</div>
+    <hr class="lineBreak">
+    <div class="baseTitle">Location</div>
+    <div class="baseText" id="pingLocation"></div>
+    <hr class="lineBreak">
+    <div class="baseTitle">Privacy</div>
+    <div class="baseText">Weather information is pulled from OpenWeatherMap API. HereNow does not track you or any of your data. We simply grab your GPS data to grab the correct weather for you.</div>
+    <hr class="lineBreak">
+    <div class="baseTitle">Version</div>
+    <div class="baseText" style = "text-align: center">HereNow Release 1.0</div>
+    <hr class="lineBreak">
+  </div>
+
+  <!-- START SCRIPTS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js/weatherApp.js"></script>
+</body>
+</html>
