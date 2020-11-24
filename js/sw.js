@@ -1,12 +1,12 @@
 self.addEventListener('install', function(e) {
     e.waitUntil(
-        caches.open('pwa-example').then(function(cache) {
+        caches.open('HereNow').then(function(cache) {
             return cache.addAll([
                 '/',
                 '/index.html',
                 '/app.js',
                 '/css/style.css',
-                '/js/weatherApp.js'//Add any other assets your web page needs
+                '/js/weatherApp.js'
             ]);
         })
     );
