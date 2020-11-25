@@ -8,7 +8,7 @@
   "theme_color": "#050a0d",
   "icons": [
     {
-      "src": "media/icons/ms-icon-180x180.png",
+      "src": "media/appIcons/ms-icon-180x180.png",
       "sizes": "180x180",
       "type": "image/png"
     }
