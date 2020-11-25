@@ -2,11 +2,13 @@ self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('HereNow').then(function(cache) {
             return cache.addAll([
+                '.',
                 '/',
-                '/index.html',
-                '/app.js',
-                '/css/style.css',
-                '/js/weatherApp.js'
+                '../index.html',
+                '../app.js',
+                '../manifest.json',
+                '../css/style.css',
+                'js/weatherApp.js'
             ]);
         })
     );
