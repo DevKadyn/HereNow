@@ -17,39 +17,19 @@
   function settingsOpen() {
     console.log("Showing settings...")
     $("#mainContainer").css("display","none");
-    $("#forecastContainer").css("display","none");
     $("#settingsContainer").css("display","block");
+    $("#settingsButton").css("display","none");
+    $("#exitButton").css("display","block");
   }
 
   //Show Weather Page
   function currentOpen() {
     console.log("Showing weather...")
     $("#mainContainer").css("display","block");
-    $("#forecastContainer").css("display","none");
     $("#settingsContainer").css("display","none");
+    $("#settingsButton").css("display","block");
+    $("#exitButton").css("display","none");
   }
-
-  //Show Weather Page
-  function forecastOpen() {
-    console.log("Showing weather...")
-    $("#mainContainer").css("display","none");
-    $("#forecastContainer").css("display","block");
-    $("#settingsContainer").css("display","none");
-  }
-
-
-
-  //Run Function to Check Local Storage Data
-  function checkSavedData() {
-    var getUserName = localStorage.getItem('localUserName');
-    if(getUserName === null){
-    	localStorage.setItem('localUserName','Friend!');
-    	}
-    else{
-    }
-    document.getElementById('greetingsTag').innerHTML = "Hello,<br>"  + getUserName;
-  }
-
 
   //Run Function to Grab Current Year to Date
   function loadDate(){

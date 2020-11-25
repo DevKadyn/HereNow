@@ -22,15 +22,18 @@
   <!-- https://openweathermap.org/weathermap?basemap=map&cities=true&layer=radar&lat=45.06&lon=-93.14&zoom=10 -->
 </head>
 <body>
+
+  <div class="logoText">HereNow</div>
+  <div class="buttonStyle" id="settingsButton" onClick="settingsOpen()"><img src="media/buttonicons/menuBars.png" width="52px" height="45px"></div>
+  <div class="buttonStyle" id="exitButton" onClick="currentOpen()"><img src="media/buttonicons/exitIcon.png" width="52px" height="52px"></div>
+
   <!-- Main Weather Container -->
   <div id="mainContainer">
-    <div class="logoText">HereNow</div>
-    <div class="buttonStyle" id="settingsButton" onClick="settingsOpen()"><img src="media/buttonicons/menuBars.png" width="52px" height="45px"></div>
     <div class="" id="currentCity"></div>
     <div class="" id="lastUpdate"></div>
     <hr class="lineBreak">
     <img class="" id="weatherIcon" src="" width="" height="">
-        <div class="" id="currentConditions"></div>
+    <div class="" id="currentConditions"></div>
     <hr class="lineBreak">
     <div class="" id="highTemp"></div>
     <div class="" id="currentTemp"></div>
@@ -45,7 +48,6 @@
   <!-- Settings Container -->
   <div id="settingsContainer">
     <div class="logoText">HereNow</div>
-    <div class="buttonStyle" id="exitButton" onClick="currentOpen()"><img src="media/buttonicons/exitIcon.png" width="52px" height="52px"></div>
     <div class="baseTitle  spacer">About</div>
     <div class="baseText">HereNow is a simple PWA App which can easily be viewed for a web browser or installed from your browser onto your phones home screen for easy access. This app was built to get you the information you need, quickly for your current location.</div>
     <hr class="lineBreak">

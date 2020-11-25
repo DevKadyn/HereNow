@@ -1,9 +1,11 @@
-html {
-    height: 100%
-}
+@charset "utf-8";
+/* CSS Document */
 
 body {
   background-color: #050a0d;
+  overflow: hidden;
+  width: 70%;
+  margin: auto;
 }
 
 .logoText {
@@ -20,14 +22,12 @@ body {
 
 #mainContainer {
   display: none;
-  margin: 150px;
-  max-height: 865px;
+  margin-top: 8vh;
 }
 
 #settingsContainer {
   display: none;
-  margin: 150px;
-  max-height: 865px;
+  margin-top: 8vh;
 }
 
 .spacer {
@@ -35,8 +35,8 @@ body {
 }
 
 .lineBreak {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   height: 5px;
   width: 250px;
   background-color: #FFFFFF;
@@ -83,27 +83,14 @@ body {
   position: absolute;
   top: 75px;
   right: 75px;
-}
-#currentButton {
-  position: absolute;
-  bottom: 75px;
-  right: 50%;
-  margin-right: 50px;
-  text-align: center;
-}
-
-#forecastButton {
-  position: absolute;
-  bottom: 75px;
-  left: 50%;
-  margin-left: 50px;
-  text-align: center;
+  display: block;
 }
 
 #exitButton {
   position: absolute;
   top: 75px;
   right: 75px;
+  display: none;
 }
 
 #currentCity {
@@ -135,7 +122,7 @@ body {
 
 #weatherIcon {
   text-align: center;
-  width: 26vh;
+  width: 22vh;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -143,7 +130,7 @@ body {
 
 #currentTemp {
   font-family: Arial;
-  font-size: 12vh;
+  font-size: 10vh;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
@@ -190,12 +177,6 @@ body {
 #sunSet {
   margin-left: 10px;
   margin-right: 20px;
-}
-
-#weatherReload {
-  position: absolute;
-  bottom: 100px;
-  margin: auto;
 }
 
 .forecastDay {
