@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Meta Data -->
-  <title></title>
+  <title>HereNow</title>
   <meta name="author" content="Kadyn Wishcop">
   <meta name="description" content="HereNow">
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -12,11 +12,27 @@
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Web App manifest -->
+  <script src="app.js"></script>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Application Icons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="media/appIcons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="media/appIcons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="media/appIcons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="media/appIcons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="media/appIcons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="media/appIcons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="media/appIcons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="media/appIcons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="media/appIcons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="media/appIcons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="media/appIcons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="media/appIcons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="media/appIcons/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-  <script src="app.js"></script>
-  <link rel="manifest" href="manifest.json">
 
   <!-- Saved Stuff -->
   <!-- https://openweathermap.org/weathermap?basemap=map&cities=true&layer=radar&lat=45.06&lon=-93.14&zoom=10 -->
@@ -58,18 +74,15 @@
     <div class="baseText">Weather information is pulled from OpenWeatherMap API. HereNow does not track you or any of your data. We simply grab your GPS data to grab the correct weather for you.</div>
     <hr class="lineBreak">
     <div class="baseTitle">Version</div>
-    <div class="baseText" style = "text-align: center">HereNow Release 1.0</div>
+    <div class="baseText" style = "text-align: center">HereNow Release 1.1</div>
     <hr class="lineBreak">
   </div>
 
   <!-- START SCRIPTS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="js/weatherApp.js"></script>
   <script>
-
-  var valuePixelRatio = window.screen.height;
-  console.log('Pixel Ratio ' + valuePixelRatio)
   </script>
 </body>
 </html>
