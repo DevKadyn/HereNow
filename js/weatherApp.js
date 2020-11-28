@@ -1,35 +1,10 @@
-
-  //Set Storage
-  var storage = window.localStorage;
-
   //Run Functions
+
   //checkSavedData();
   //loadDate();
   //loadTime();
   checkGeoLocation();
   //checkServiceWorker();
-
-
-  //
-
-  //Page Changes
-  //Show Settings Page
-  function settingsOpen() {
-    console.log("Showing settings...")
-    $("#mainContainer").css("display","none");
-    $("#settingsContainer").css("display","block");
-    $("#settingsButton").css("display","none");
-    $("#exitButton").css("display","block");
-  }
-
-  //Show Weather Page
-  function currentOpen() {
-    console.log("Showing weather...")
-    $("#mainContainer").css("display","block");
-    $("#settingsContainer").css("display","none");
-    $("#settingsButton").css("display","block");
-    $("#exitButton").css("display","none");
-  }
 
   //Run Function to Grab Current Year to Date
   function loadDate(){
@@ -93,24 +68,21 @@ var myLat = 0;
   function checkGeoLocation() {
     if ("geolocation" in navigator) {
       $('.js-geolocation').show();
-      console.log("GeoLocation Found...")
-
-
-      navigator.geolocation.getCurrentPosition(function(position) {
-        console.log("Running GeoLocation in Navigator...")
-        console.log("Lat = " + position.coords.latitude)
-        console.log("Lon = " + position.coords.longitude)
-        myLat = position.coords.latitude;
-        myLon = position.coords.longitude;
-        console.log(myLon + " " + myLat)
-        $("#mainContainer").css("display","block");
-        loadOWMAPICurrent();
-      });
+      console.log("HereNow Message: We have found your Geo Location.")
     } else {
       $('.js-geolocation').hide();
-      console.log("No GeoLocation Found...")
+      console.log("HereNow Message: We couldn't find your Geo Location.")
     }
-  }
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("HereNow: We are currently running GeoLocation in the Navigator and are loading your location.")
+      console.log("HereNow: Your current Lat is " + position.coords.latitude)
+      console.log("HereNow: Your current Lon is " + position.coords.longitude)
+      myLat = position.coords.latitude;
+      myLon = position.coords.longitude;
+      loadOWMAPICurrent();
+      })};
+
 
 
   //Run OpenWeatherMap API for Weather DAta
@@ -124,19 +96,21 @@ var myLat = 0;
       //OpenWeatherMap Lat and Lon Location Current
       .get("https://api.openweathermap.org/data/2.5/weather?lat=" + latPos + "&lon=" + lonPos + "&appid=" + currentAPIKey + "&units=imperial")
       .then(response => {
+        console.log("HereNow: We have grabbed the weather data from OpenWeatherMap and is loaded below...")
         console.log(response.data);
 
         //Grab Current City Name
         var currentLocationName = response.data.name;
         document.getElementById('currentCity').innerHTML = '<img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName;
-        document.getElementById('pingLocation').innerHTML = 'It looks like you are currently located<br><img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName + ' This is based on your GPS data and weather stations near by that we have access to.';
+        document.getElementById('pingLocation').innerHTML = '<b>Location:</b> <img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName + "<br><b>Latitude:</b> " + latPos + "<br><b>Longitude:</b> " + lonPos;;
+
         //Grab OpenWeatherMap Update timeout
         var rawLastUpdate = response.data.dt;
-        console.log("Raw - " + rawLastUpdate);
+        console.log("HereNow: Your raw time is " + rawLastUpdate);
         var dateLastUpdate = new Date(rawLastUpdate * 1000);
-        console.log("Full - " + dateLastUpdate);
+        console.log("HereNow: Your Full time is " + dateLastUpdate);
         cleanLastUpdate = dateLastUpdate.toLocaleTimeString('en-US',{ hour: '2-digit', minute: '2-digit' });
-        console.log("Clean - " + cleanLastUpdate);
+        console.log("HereNow: Your cleaned up time is " + cleanLastUpdate);
 
         document.getElementById('lastUpdate').innerHTML = "Last Updated: " + cleanLastUpdate;
 
