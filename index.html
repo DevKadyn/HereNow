@@ -62,19 +62,42 @@
     <div class="" id="currentWind"></div>
     <hr class="lineBreak">
     <div class="" id="theSun"></div>
+    <div class="bottomNav"></div>
   </div>
 
+  <!-- GeoLocation Blocked  -->
   <div class="container" id="deniedContainer">
-    <div class="baseTitle">Denied Location</div>
+    <div class="space baseTitle">Denied Location</div>
+    <hr class="lineBreak">
     <div class="baseText">Looks like you denied access to HereNow to grab your location. Without that we can't get you the latest weather information for your current location. </div>
+    <div class="baseText"><br>You can refresh your browser or the installed app to allow access to your location. If you denied access and chose to remember blacklisting HereNow, you will need to clear your browser cache or delete and reinstall HereNow.</div>
+    <img class="" id="deniedIcon" src="media/deniedLogo.png" alt="Denied Icon" width="125px" height="125px">
   </div>
 
   <!-- Settings Container -->
   <div class="container" id="optionsContainer">
     <div class="logoText">HereNow</div>
+    <div class="baseButton" id="customizeButton" onClick="customizeOpen()">Customize</div>
     <div class="baseButton" id="aboutButton" onClick="aboutOpen()">About</div>
     <div class="baseButton" id="privacyButton" onClick="privacyOpen()">Privacy</div>
     <div class="baseButton" id="locationButton" onClick="locationOpen()">Location</div>
+  </div>
+
+  <!-- Customize Container -->
+  <div class="container" id="customizeContainer">
+    <div class="logoText">HereNow</div>
+    <div class="space baseTitle">Customize</div>
+    <hr class="lineBreak">
+    <div class="baseText">HereNow is a browser based app meaning if you clear your cache on your browser, your settings within the HereNow app will be returned to the defaults.</div>
+    <hr class="lineBreak">
+    <!--
+    <div class="onoffswitch">
+      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0">
+      <label class="onoffswitch-label" for="myonoffswitch"></label>
+    </div>
+    <div class="floatLeft switchText">Metric Information</div>
+    -->
+    <div class="baseText" style = "text-align: center">Coming Soon!</div>
   </div>
 
   <!-- About Container -->
@@ -88,7 +111,7 @@
     <div class="baseText">HereNow is an open source project that anyone is free to use both in browser and installed (PWA) with no ads ever. Feel free to use, modify, and share HereNow. Visit https://github.com/DevKadyn/HereNow</div>
     <div class="space baseTitle">Version</div>
     <hr class="lineBreak">
-    <div class="baseText" style = "text-align: center">HereNow Release 1.2</div>
+    <div class="baseText" style = "text-align: center">HereNow Release 1.3</div>
   </div>
 
   <!-- Privacy Container -->

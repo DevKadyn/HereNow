@@ -1,10 +1,35 @@
   //Run Functions
-
+  //-----------------
   //checkSavedData();
   //loadDate();
   //loadTime();
+  //checkGeoLocationPermission(); //Function doesn't work outside of
   checkGeoLocation();
   //checkServiceWorker();
+
+  function checkGeoLocationPermission() {
+    navigator.geolocation.watchPosition(function(position) {
+        console.log("HereNow: Thanks for allowing us to grab your location.");
+          $("#optionsButton").css("display","block");
+          $("#weatherContainer").css("display","block");
+          console.log("HereNow: Your current Lat is " + position.coords.latitude)
+          console.log("HereNow: Your current Lon is " + position.coords.longitude)
+      },
+      function(error) {
+        if (error.code == error.PERMISSION_DENIED)
+          console.log("HereNow: Wish you would allow us to grab your location.");
+          $("#weatherContainer").css("display","none");
+          $("#deniedContainer").css("display","block");
+          $("#optionsContainer").css("display","none");
+          $("#customizeContainer").css("display","none");
+          $("#aboutContainer").css("display","none");
+          $("#privacyContainer").css("display","none");
+          $("#locationContainer").css("display","none");
+          $("#optionsButton").css("display","none");
+          $("#backButton").css("display","none");
+          $("#exitButton").css("display","none");
+      });
+  }
 
   //Run Function to Grab Current Year to Date
   function loadDate(){
@@ -62,28 +87,46 @@
     document.getElementById('currentTime').innerHTML = strTime;
   }
 
-var myLon = 0;
-var myLat = 0;
+  var myLon = 0;
+  var myLat = 0;
 
   function checkGeoLocation() {
     if ("geolocation" in navigator) {
       $('.js-geolocation').show();
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
       console.log("HereNow Message: We have found your Geo Location.")
     } else {
       $('.js-geolocation').hide();
       console.log("HereNow Message: We couldn't find your Geo Location.")
     }
 
-    navigator.geolocation.getCurrentPosition(function(position) {
+    function showPosition(position) {
       console.log("HereNow: We are currently running GeoLocation in the Navigator and are loading your location.")
+      console.log("HereNow: Thanks for allowing us to grab your location.");
       console.log("HereNow: Your current Lat is " + position.coords.latitude)
       console.log("HereNow: Your current Lon is " + position.coords.longitude)
       myLat = position.coords.latitude;
       myLon = position.coords.longitude;
+      $("#optionsButton").css("display","block");
+      $("#weatherContainer").css("display","block");
       loadOWMAPICurrent();
-      })};
+      };
 
-
+      function showError(error) {
+        if (error.code == error.PERMISSION_DENIED)
+          console.log("HereNow: Wish you would allow us to grab your location.");
+          $("#weatherContainer").css("display","none");
+          $("#deniedContainer").css("display","block");
+          $("#optionsContainer").css("display","none");
+          $("#customizeContainer").css("display","none");
+          $("#aboutContainer").css("display","none");
+          $("#privacyContainer").css("display","none");
+          $("#locationContainer").css("display","none");
+          $("#optionsButton").css("display","none");
+          $("#backButton").css("display","none");
+          $("#exitButton").css("display","none");
+      }
+  }
 
   //Run OpenWeatherMap API for Weather DAta
   function loadOWMAPICurrent () {
@@ -102,7 +145,7 @@ var myLat = 0;
         //Grab Current City Name
         var currentLocationName = response.data.name;
         document.getElementById('currentCity').innerHTML = '<img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName;
-        document.getElementById('pingLocation').innerHTML = '<b>Location:</b> <img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName + "<br><b>Latitude:</b> " + latPos + "<br><b>Longitude:</b> " + lonPos;;
+        document.getElementById('pingLocation').innerHTML = '<b>Location:</b> <img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName + "<br><b>Latitude:</b> " + latPos.toFixed() + "<br><b>Longitude:</b> " + lonPos.toFixed();
 
         //Grab OpenWeatherMap Update timeout
         var rawLastUpdate = response.data.dt;
