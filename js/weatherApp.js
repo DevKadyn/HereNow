@@ -1,12 +1,15 @@
-  //Run Functions
-  //-----------------
+  /*---------------------------------------------------------------------------
+  Run Functions
+  ---------------------------------------------------------------------------*/
   //checkSavedData();
   loadDate();
   //loadTime();
   checkGeoLocation();
   //checkServiceWorker();
 
-  //Run Function to Grab Current Year to Date
+  /*---------------------------------------------------------------------------
+  Generate Current Date
+  ---------------------------------------------------------------------------*/
   function loadDate(){
     //Load Today's Day
     var day = new Date();
@@ -47,7 +50,9 @@
   }
 
 
-  //Run Function to Grab Current Time
+  /*---------------------------------------------------------------------------
+  Generate Current Time
+  ---------------------------------------------------------------------------*/
   function loadTime () {
     var date = new Date();
     var hours = date.getHours();
@@ -63,6 +68,9 @@
   var myLon = 0;
   var myLat = 0;
 
+  /*---------------------------------------------------------------------------
+  Check Browser for GeoLocation Information
+  ---------------------------------------------------------------------------*/
   function checkGeoLocation() {
     if ("geolocation" in navigator) {
       $('.js-geolocation').show();
@@ -84,6 +92,7 @@
       $("#weatherContainer").css("display","block");
       $("#refreshWeather").css("display","block");
       loadOWMAPICurrent();
+      generateLocationImage();
       generateMapBackground();
       };
 
@@ -104,25 +113,34 @@
       }
   }
 
-
+  /*---------------------------------------------------------------------------
+  Generate MapBox Background Based on Users Location
+  ---------------------------------------------------------------------------*/
   function generateMapBackground() {
-
     var mapboxAPIKey = "pk.eyJ1IjoiZGV2a2FkeW4iLCJhIjoiY2tpNDNobjBzMGRqMDJxbXNpMXd5bGhkeSJ9.6aXmf3mDlVyTvCZ-546pUA";
     var latPos = myLat;
     var lonPos = myLon;
-    style: 'mapbox://styles/devkadyn/cki44i8tt1gpp19lkxyq5x7f8'
-    //document.getElementById('mapBoxImage').src = "https://api.mapbox.com/styles/v1/devkadyn/cki44i8tt1gpp19lkxyq5x7f8/static/" + lonPos + "," + latPos + "," + "15,0/650x1000?access_token=" + mapboxAPIKey
-    var mapBoxImageLoad = "https://api.mapbox.com/styles/v1/devkadyn/cki44i8tt1gpp19lkxyq5x7f8/static/" + lonPos + "," + latPos + "," + "15,0/650x1000?access_token=" + mapboxAPIKey;
-    //document.body.style.backgroundImage = 'url(' + mapBoxImageLoad +')';
-    //document.body.style.backgroundColor = "#213948";
-
-    $("body").css("background-image", 'url(' + mapBoxImageLoad +')');
-    $("body").css("background-color", "#213948");
+    document.getElementById('mapBoxBackground').src = "https://api.mapbox.com/styles/v1/devkadyn/cki44i8tt1gpp19lkxyq5x7f8/static/" + lonPos + "," + latPos + "," + "15,0/1000x1000?access_token=" + mapboxAPIKey
+    //var mapBoxImageLoad = "https://api.mapbox.com/styles/v1/devkadyn/cki44i8tt1gpp19lkxyq5x7f8/static/" + lonPos + "," + latPos + "," + "15,0/650x1000?access_token=" + mapboxAPIKey;
     console.log('HereNow: Map Box Completed')
   }
 
 
-  //Run OpenWeatherMap API for Weather DAta
+  /*---------------------------------------------------------------------------
+  Generate MapBox Image for Location Tab Based on Users Location
+  ---------------------------------------------------------------------------*/
+  function generateLocationImage() {
+    var mapboxAPIKey = "pk.eyJ1IjoiZGV2a2FkeW4iLCJhIjoiY2tpNDNobjBzMGRqMDJxbXNpMXd5bGhkeSJ9.6aXmf3mDlVyTvCZ-546pUA";
+    var latPos = myLat;
+    var lonPos = myLon;
+
+    document.getElementById('locationMap').src = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/" + lonPos + "," + latPos + "," + "15,0/650x1000?access_token=" + mapboxAPIKey
+    console.log('HereNow: Map Box Completed')
+  }
+
+  /*---------------------------------------------------------------------------
+  Generate JSON data and placement for OpenWeatherMap API Based on Location
+  ---------------------------------------------------------------------------*/
   function loadOWMAPICurrent () {
     const currentAPIKey = "61bd3d48471f508fa7cd4799235d2c38";
     var latPos = myLat;
@@ -256,10 +274,12 @@
       .catch(error => console.error(error));
   }
 
-  //Start Service Worker
+  /*---------------------------------------------------------------------------
+  Run Service Worker for PWA
+  ---------------------------------------------------------------------------*/
   function checkServiceWorker () {
     if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/js/sw.js').then(function() {
-          console.log("Tada! Your service worker is now registered"); });
+        navigator.serviceWorker.register('../sw.js').then(function() {
+          console.log("HereNow: Your service worker is now registered"); });
     }
   }//End of Service Worker

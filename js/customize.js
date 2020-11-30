@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------
+HereNow Customization Functions and Settings (Currently Not Used!)
+---------------------------------------------------------------------------*/
+
 //Formula Changer
 var formulaTemp = localStorage.getItem('formulaTemp');
 if(formulaTemp === null){

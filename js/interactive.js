@@ -1,4 +1,7 @@
-//Interactive functionaility like opening and closing fuax pages.
+/*---------------------------------------------------------------------------
+JavaScript for Showing and Hiding Pages for HereNow
+---------------------------------------------------------------------------*/
+
 //Show Weather Page
 function weatherOpen() {
   console.log("Showing weather...")

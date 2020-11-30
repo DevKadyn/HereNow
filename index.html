@@ -10,7 +10,6 @@
 
   <!-- Load CSS & JS Files -->
   <link rel="stylesheet" href="css/style.css">
-  mapbox://styles/devkadyn/cki44i8tt1gpp19lkxyq5x7f8
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
   <!-- Preconnections -->
@@ -42,12 +41,12 @@
   <!-- https://openweathermap.org/weathermap?basemap=map&cities=true&layer=radar&lat=45.06&lon=-93.14&zoom=10 -->
 </head>
 <body>
-  <div id="mapBackground"> </div>
+  <div><img id="mapBoxBackground" src=""></div>
   <div class="logoText"><img src="media/logo.png" alt="logo" width="400px" height="66px"></div>
   <div class="buttonStyle" id="optionsButton" onClick="optionsOpen()"><img src="media/buttonicons/menuBars.png" alt="Options Icon" width="52px" height="45px"></div>
   <div class="buttonStyle" id="backButton" onClick="optionsOpen()"><img src="media/buttonicons/backIcon.png" alt="Back Icon" width="31px" height="52px"></div>
   <div class="buttonStyle" id="exitButton" onClick="weatherOpen()"><img src="media/buttonicons/exitIcon.png" alt="Exit Icon" width="52px" height="52px"></div>
-  <div class="" id="refreshWeather" onClick="weatherRefresh()"><img src="media/buttonicons/refresh.png" alt="Exit Icon" width="52px" height="52px"></div>
+
   <!-- Main Weather Container -->
   <div class="container animate__animated animate__fadeIn" id="weatherContainer">
     <div class="space2vh" id="currentCity"></div>
@@ -65,7 +64,7 @@
     <div class="" id="currentWind"></div>
     <hr class="lineBreak">
     <div class="" id="theSun"></div>
-    <div class="bottomNav"></div>
+    <div class="" id="refreshWeather" onClick="weatherRefresh()"><img src="media/buttonicons/refresh.png" alt="Exit Icon" width="52px" height="52px"></div>
   </div>
 
   <!-- GeoLocation Blocked  -->
@@ -107,7 +106,7 @@
     <div class="baseText">HereNow is an open source project that anyone is free to use both in browser and installed (PWA) with no ads ever. Feel free to use, modify, and share HereNow. Visit https://github.com/DevKadyn/HereNow</div>
     <div class="space2vh baseTitle">Version</div>
     <hr class="lineBreak">
-    <div class="baseText" style = "text-align: center">HereNow Pre-Release 1.4</div>
+    <div class="baseText" style = "text-align: center">Release 1.4</div>
   </div>
 
   <!-- Privacy Container -->
@@ -124,6 +123,8 @@
     <div class="space2vh baseTitle">Location</div>
     <hr class="lineBreak">
     <div class="baseText" id="pingLocation"></div>
+    <hr class="lineBreak">
+    <img class="" id="locationMap" src="" alt="Location Map" width="100%" height="100%">
   </div>
 
 

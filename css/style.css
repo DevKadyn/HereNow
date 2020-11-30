@@ -3,19 +3,21 @@
 
 body {
   background-color: #0A1319;
-  background-image: url();
-  background-attachment: fixed;
-  background-position: center;
-  background-blend-mode: hard-light;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   overflow: hidden;
   width: 75%;
   margin: auto;
 }
 
+#mapBoxBackground {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: opacity(30%);
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 .logoText {
   position: absolute;
@@ -168,17 +170,22 @@ body {
 }
 
 #refreshWeather {
-  position: absolute;
   display: none;
-  bottom: 75px;
-  width: 80%;
+  width: 100%;
   height: 3vh;
   right: 10%;
   border-radius: 75px;
   color: #FFFFFF;
   text-align: center;
+  margin-top: 2vh;
   padding:.75vh 0 .75vh 0;
   border: 5px solid #FFFFFF;
+}
+
+#locationMap {
+  border-radius: 75px;
+  width: 100%;
+  height: 100%;
 }
 
 #currentDay {
