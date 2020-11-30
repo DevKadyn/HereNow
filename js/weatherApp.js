@@ -1,48 +1,23 @@
   //Run Functions
   //-----------------
   //checkSavedData();
-  //loadDate();
+  loadDate();
   //loadTime();
-  //checkGeoLocationPermission(); //Function doesn't work outside of
   checkGeoLocation();
   //checkServiceWorker();
-
-  function checkGeoLocationPermission() {
-    navigator.geolocation.watchPosition(function(position) {
-        console.log("HereNow: Thanks for allowing us to grab your location.");
-          $("#optionsButton").css("display","block");
-          $("#weatherContainer").css("display","block");
-          console.log("HereNow: Your current Lat is " + position.coords.latitude)
-          console.log("HereNow: Your current Lon is " + position.coords.longitude)
-      },
-      function(error) {
-        if (error.code == error.PERMISSION_DENIED)
-          console.log("HereNow: Wish you would allow us to grab your location.");
-          $("#weatherContainer").css("display","none");
-          $("#deniedContainer").css("display","block");
-          $("#optionsContainer").css("display","none");
-          $("#customizeContainer").css("display","none");
-          $("#aboutContainer").css("display","none");
-          $("#privacyContainer").css("display","none");
-          $("#locationContainer").css("display","none");
-          $("#optionsButton").css("display","none");
-          $("#backButton").css("display","none");
-          $("#exitButton").css("display","none");
-      });
-  }
 
   //Run Function to Grab Current Year to Date
   function loadDate(){
     //Load Today's Day
     var day = new Date();
     var rawDay  =  new Array(7);
-      rawDay[0] = "Sunday";
-      rawDay[1] = "Monday";
-      rawDay[2] = "Tuesday";
-      rawDay[3] = "Wednesday";
-      rawDay[4] = "Thursday";
-      rawDay[5] = "Friday";
-      rawDay[6] = "Saturday";
+      rawDay[0] = "Sun";
+      rawDay[1] = "Mon";
+      rawDay[2] = "Tue";
+      rawDay[3] = "Wed";
+      rawDay[4] = "Thu";
+      rawDay[5] = "Fri";
+      rawDay[6] = "Sat";
     var loadDay = rawDay[day.getDay()];
     //Load Today's Date
     var date = new Date();
@@ -51,7 +26,7 @@
     var month = new Date();
     var rawMonth = new Array(12);
       rawMonth[0] = "January";
-      rawMonth[1] = "February";
+      rawMonth[1] = "Febuary";
       rawMonth[2] = "March";
       rawMonth[3] = "April";
       rawMonth[4] = "May";
@@ -68,9 +43,7 @@
     var year = new Date();
     var loadYear = year.getFullYear();
 
-    document.getElementById('currentDay').innerHTML = loadDay;
-    document.getElementById('currentMonth').innerHTML = loadMonth + " " + loadDate;
-    document.getElementById('currentYear').innerHTML = loadYear;
+    document.getElementById('currentDay').innerHTML = "Today is " + loadDay + ", " + loadMonth + " " + loadDate ;
   }
 
 
@@ -109,7 +82,9 @@
       myLon = position.coords.longitude;
       $("#optionsButton").css("display","block");
       $("#weatherContainer").css("display","block");
+      $("#refreshWeather").css("display","block");
       loadOWMAPICurrent();
+      generateMapBackground();
       };
 
       function showError(error) {
@@ -122,11 +97,30 @@
           $("#aboutContainer").css("display","none");
           $("#privacyContainer").css("display","none");
           $("#locationContainer").css("display","none");
+          $("#refreshWeather").css("display","none");
           $("#optionsButton").css("display","none");
           $("#backButton").css("display","none");
           $("#exitButton").css("display","none");
       }
   }
+
+
+  function generateMapBackground() {
+
+    var mapboxAPIKey = "pk.eyJ1IjoiZGV2a2FkeW4iLCJhIjoiY2tpNDNobjBzMGRqMDJxbXNpMXd5bGhkeSJ9.6aXmf3mDlVyTvCZ-546pUA";
+    var latPos = myLat;
+    var lonPos = myLon;
+    style: 'mapbox://styles/devkadyn/cki44i8tt1gpp19lkxyq5x7f8'
+    //document.getElementById('mapBoxImage').src = "https://api.mapbox.com/styles/v1/devkadyn/cki44i8tt1gpp19lkxyq5x7f8/static/" + lonPos + "," + latPos + "," + "15,0/650x1000?access_token=" + mapboxAPIKey
+    var mapBoxImageLoad = "https://api.mapbox.com/styles/v1/devkadyn/cki44i8tt1gpp19lkxyq5x7f8/static/" + lonPos + "," + latPos + "," + "15,0/650x1000?access_token=" + mapboxAPIKey;
+    //document.body.style.backgroundImage = 'url(' + mapBoxImageLoad +')';
+    //document.body.style.backgroundColor = "#213948";
+
+    $("body").css("background-image", 'url(' + mapBoxImageLoad +')');
+    $("body").css("background-color", "#213948");
+    console.log('HereNow: Map Box Completed')
+  }
+
 
   //Run OpenWeatherMap API for Weather DAta
   function loadOWMAPICurrent () {

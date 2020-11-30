@@ -3,10 +3,19 @@
 
 body {
   background-color: #0A1319;
+  background-image: url();
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: hard-light;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   overflow: hidden;
-  width: 70%;
+  width: 75%;
   margin: auto;
 }
+
 
 .logoText {
   position: absolute;
@@ -62,10 +71,10 @@ body {
 }
 
 .lineBreak {
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
   height: 5px;
-  width: 250px;
+  width: 100px;
   background-color: #FFFFFF;
   border-width: 0;
   border-radius: 5px;
@@ -110,7 +119,11 @@ body {
   margin-top: 3vh;
 }
 
-.space{
+.space1vh{
+  padding-top: 1vh;
+}
+
+.space2vh{
   padding-top: 2vh;
 }
 
@@ -154,6 +167,27 @@ body {
   display: none;
 }
 
+#refreshWeather {
+  position: absolute;
+  display: none;
+  bottom: 75px;
+  width: 80%;
+  height: 3vh;
+  right: 10%;
+  border-radius: 75px;
+  color: #FFFFFF;
+  text-align: center;
+  padding:.75vh 0 .75vh 0;
+  border: 5px solid #FFFFFF;
+}
+
+#currentDay {
+  font-family: Arial;
+  font-size: 2vh;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-align: center;
+}
 #currentCity {
   font-family: Arial;
   font-size: 2.5vh;
@@ -164,7 +198,7 @@ body {
 
 #lastUpdate {
   font-family: Arial;
-  font-size: 2vh;
+  font-size: 1vh;
   font-weight: 300;
   color: #FFFFFF;
   text-align: center;
@@ -182,7 +216,7 @@ body {
 
 #weatherIcon {
   text-align: center;
-  width: 20vh;
+  width: 24vh;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -194,6 +228,7 @@ body {
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
+  margin-left: 2vh;
 }
 
 #highTemp, #lowTemp {
@@ -202,6 +237,7 @@ body {
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
+  margin-right: 2vh;
 }
 
 #feelsLikeTemp {

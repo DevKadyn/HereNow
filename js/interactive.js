@@ -1,5 +1,4 @@
 //Interactive functionaility like opening and closing fuax pages.
-
 //Show Weather Page
 function weatherOpen() {
   console.log("Showing weather...")
@@ -10,6 +9,7 @@ function weatherOpen() {
   $("#aboutContainer").css("display","none");
   $("#privacyContainer").css("display","none");
   $("#locationContainer").css("display","none");
+  $("#refreshWeather").css("display","block");
   $("#optionsButton").css("display","block");
   $("#backButton").css("display","none");
   $("#exitButton").css("display","none");
@@ -25,6 +25,7 @@ function optionsOpen() {
   $("#aboutContainer").css("display","none");
   $("#privacyContainer").css("display","none");
   $("#locationContainer").css("display","none");
+  $("#refreshWeather").css("display","none");
   $("#optionsButton").css("display","none");
   $("#backButton").css("display","none");
   $("#exitButton").css("display","block");
@@ -40,6 +41,7 @@ function aboutOpen() {
   $("#aboutContainer").css("display","block");
   $("#privacyContainer").css("display","none");
   $("#locationContainer").css("display","none");
+  $("#refreshWeather").css("display","none");
   $("#optionsButton").css("display","none");
   $("#backButton").css("display","block");
   $("#exitButton").css("display","none");
@@ -55,6 +57,7 @@ function customizeOpen() {
   $("#aboutContainer").css("display","none");
   $("#privacyContainer").css("display","none");
   $("#locationContainer").css("display","none");
+  $("#refreshWeather").css("display","none");
   $("#optionsButton").css("display","none");
   $("#backButton").css("display","block");
   $("#exitButton").css("display","none");
@@ -70,6 +73,7 @@ function privacyOpen() {
   $("#aboutContainer").css("display","none");
   $("#privacyContainer").css("display","block");
   $("#locationContainer").css("display","none");
+  $("#refreshWeather").css("display","none");
   $("#optionsButton").css("display","none");
   $("#backButton").css("display","block");
   $("#exitButton").css("display","none");
@@ -85,7 +89,13 @@ function locationOpen() {
   $("#aboutContainer").css("display","none");
   $("#privacyContainer").css("display","none");
   $("#locationContainer").css("display","block");
+  $("#refreshWeather").css("display","none");
   $("#optionsButton").css("display","none");
   $("#backButton").css("display","block");
   $("#exitButton").css("display","none");
+}
+
+
+function weatherRefresh() {
+  location.reload();
 }
