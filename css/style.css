@@ -20,6 +20,8 @@ body {
 }
 
 .logoText {
+  width: 400px;
+  height: 66px;
   position: absolute;
   top: 60px;
   left: 30vw;
