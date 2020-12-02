@@ -5,6 +5,8 @@
   "display": "fullscreen",
   "background_color": "#050a0d",
   "description": "Simple Weather For Where You Are At!",
+  "related_applications": [],
+  "prefer_related_applications": false,
   "theme_color": "#050a0d",
   "icons": [
     {

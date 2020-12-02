@@ -1,19 +1,15 @@
 
-self.importScripts('data/games.js');
+self.importScripts('js/inter.js');
 
 // Files to cache
 var cacheName = 'HereNow-v1.5';
-var appShellFiles = [
+var cacheFiles = [
 '/HereNow/',
 '/HereNow/index.html',
 '/HereNow/style.css',
-'/HereNow/js/weatherApp.js'
+'/HereNow/js/weatherApp.js',
+'/HereNow/js/interactive.js'
 ];
-var gamesImages = [];
-for(var i=0; i<games.length; i++) {
-gamesImages.push('data/img/'+games[i].slug+'.jpg');
-}
-var contentToCache = appShellFiles.concat(gamesImages);
 
 // Installing Service Worker
 self.addEventListener('install', function(e) {
@@ -21,7 +17,7 @@ console.log('[Service Worker] Install');
 e.waitUntil(
   caches.open(cacheName).then(function(cache) {
     console.log('[Service Worker] Caching all: app shell and content');
-    return cache.addAll(contentToCache);
+    return cache.addAll(cacheFiles);
   })
 );
 });
