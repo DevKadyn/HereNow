@@ -1,16 +1,4 @@
-window.addEventListener('load', e => {
-  new PWAConfApp();
-  registerSW();
-});
-
-async function registerSW() {
-  if ('serviceWorker' in navigator) {
-    try {
-      await navigator.serviceWorker.register('js/sw.js');
-    } catch (e) {
-      alert('ServiceWorker registration failed. Sorry about that.');
-    }
-  } else {
-    document.querySelector('.alert').removeAttribute('hidden');
-  }
-}
+// Registering Service Worker
+if('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/HereNow/sw.js');
+};

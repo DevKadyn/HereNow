@@ -271,13 +271,3 @@
       })
       .catch(error => console.error(error));
   }
-
-  /*---------------------------------------------------------------------------
-  Run Service Worker for PWA
-  ---------------------------------------------------------------------------*/
-  function checkServiceWorker () {
-    if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../sw.js').then(function() {
-          console.log("HereNow: Your service worker is now registered"); });
-    }
-  }//End of Service Worker
