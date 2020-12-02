@@ -2,7 +2,7 @@
   "name": "HereNow",
   "short_name": "HereNow",
   "start_url": "index.html",
-  "display": "standalone",
+  "display": "fullscreens",
   "background_color": "#050a0d",
   "description": "Simple Weather For Where You Are At!",
   "theme_color": "#050a0d",

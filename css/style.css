@@ -86,8 +86,8 @@ body {
 }
 
 .lineBreak {
-  margin-top: 2.5vh;
-  margin-bottom: 2.5vh;
+  margin-top: 1.75vh;
+  margin-bottom: 1.75vh;
   height: 5px;
   width: 100px;
   background-color: #FFFFFF;
@@ -97,7 +97,7 @@ body {
 }
 
 .lineBreakTop {
-  margin-top: 2.5vh;
+  margin-top: 1.75vh;
   height: 5px;
   width: 100px;
   background-color: #FFFFFF;
