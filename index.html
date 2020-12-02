@@ -7,7 +7,7 @@
   <meta name="description" content="HereNow">
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
   <meta content="utf-8" http-equiv="encoding">
-  <meta name="viewport" content="user-scalable=no">
+  <meta name="viewport" content="user-scalable=no"> <!-- Disables Zoom/Scaling for mobile Devices. User can bypass this by viewing in desktop mode -->
 
   <!-- Load CSS & JS Files -->
   <link rel="stylesheet" href="css/style.css">
@@ -42,16 +42,13 @@
 <body>
   <div><img id="mapBoxBackground" src=""></div>
   <div class="logoText"><img src="media/logo.png" alt="logo" width="400px" height="66px"></div>
-  <div class="buttonStyle" id="optionsButton" onClick="optionsOpen()"><img src="media/buttonicons/menuBars.png" alt="Options Icon" width="52px" height="45px"></div>
-  <div class="buttonStyle" id="backButton" onClick="optionsOpen()"><img src="media/buttonicons/backIcon.png" alt="Back Icon" width="31px" height="52px"></div>
-  <div class="buttonStyle" id="exitButton" onClick="weatherOpen()"><img src="media/buttonicons/exitIcon.png" alt="Exit Icon" width="52px" height="52px"></div>
 
   <!-- Main Weather Container -->
   <div class="container animate__animated animate__fadeIn" id="weatherContainer">
     <div class="space2vh" id="currentCity"></div>
     <div class="" id="currentDay"></div>
       <div class="" id="lastUpdate"></div>
-    <hr class="lineBreak">
+    <hr class="lineBreakTop">
     <img class="" id="weatherIcon" src="" alt="Weather Icon" width="" height="">
     <div class="" id="currentConditions"></div>
     <hr class="lineBreak">
@@ -60,10 +57,12 @@
     <div class="" id="lowTemp"></div>
     <div class="clearFloat" id="feelsLikeTemp"></div>
     <hr class="lineBreak">
+    <div class="baseText centerText">Wind</div>
     <div class="" id="currentWind"></div>
+    <div class="baseText centerText space1vh">Humidity</div>
+    <div class="" id="currentHumidity"></div>
     <hr class="lineBreak">
     <div class="" id="theSun"></div>
-    <div class="" id="refreshWeather" onClick="weatherRefresh()"><img src="media/buttonicons/refresh.png" alt="Exit Icon" width="52px" height="52px"></div>
   </div>
 
   <!-- GeoLocation Blocked  -->
@@ -75,45 +74,15 @@
     <img class="" id="deniedIcon" src="media/deniedLogo.png" alt="Denied Icon" width="125px" height="125px">
   </div>
 
-  <!-- Settings Container -->
-  <div class="container animate__animated animate__fadeIn" id="optionsContainer">
-    <div class="logoText">HereNow</div>
-    <div class="baseButton" id="aboutButton" onClick="aboutOpen()">About</div>
-    <div class="baseButton" id="privacyButton" onClick="privacyOpen()">Privacy</div>
-    <div class="baseButton" id="locationButton" onClick="locationOpen()">Location</div>
-    <div class="baseButton" id="customizeButton" onClick="customizeOpen()">Customize</div>
-  </div>
-
-  <!-- Customize Container -->
-  <div class="container animate__animated animate__fadeIn" id="customizeContainer">
-    <div class="logoText">HereNow</div>
-    <div class="space2vh baseTitle">Customize</div>
-    <hr class="lineBreak">
-    <div class="baseText">HereNow is a browser based app meaning if you clear your cache on your browser, your settings within the HereNow app will be returned to the defaults.</div>
-    <hr class="lineBreak">
-    <div class="baseText">Coming Soon!</div>
-  </div>
-
   <!-- About Container -->
   <div class="container animate__animated animate__fadeIn" id="aboutContainer">
     <div class="logoText">HereNow</div>
     <div class="space2vh baseTitle">About</div>
     <hr class="lineBreak">
     <div class="baseText">Weather should be simple specially when you just need to know the facts for what is going on right now wherever you are. HereNow is a progressive web app, meaning it functions just like a normal app on your phone without needing to install from the store. Information is updated automatically on loading the website or the app. There is also no need to ever worrying about updating the app since it is a website, you will always have the latest features. </div>
-    <div class="space2vh baseTitle">Open Source</div>
-    <hr class="lineBreak">
-    <div class="baseText">HereNow is an open source project that anyone is free to use both in browser and installed (PWA) with no ads ever. Feel free to use, modify, and share HereNow. Visit https://github.com/DevKadyn/HereNow</div>
     <div class="space2vh baseTitle">Version</div>
     <hr class="lineBreak">
-    <div class="baseText" style = "text-align: center">Release 1.4</div>
-  </div>
-
-  <!-- Privacy Container -->
-  <div class="container animate__animated animate__fadeIn" id="privacyContainer">
-    <div class="logoText">HereNow</div>
-    <div class="space2vh baseTitle">Privacy</div>
-    <hr class="lineBreak">
-    <div class="baseText">We respect your privacy on all fronts. HereNow simply grabs your current location and looks up the most current information for that spots. We don't save your location and we do not ask or keep track of any other infomration.</div>
+    <div class="baseText" style = "text-align: center">Release 1.5</div>
   </div>
 
   <!-- Location Container -->
@@ -124,6 +93,14 @@
     <div class="baseText" id="pingLocation"></div>
     <hr class="lineBreak">
     <img class="" id="locationMap" src="" alt="Location Map" width="100%" height="100%">
+  </div>
+
+  <!-- Navigation -->
+  <div id="bottomNav">
+    <div class="navIcon floatLeft" id="weatherTab" onClick="weatherOpen()"><img src="media/buttonicons/weatherIcon.png" alt="Exit Icon" width="78px" height="52px"></div>
+    <div class="navIcon floatLeft" id="locationTab" onClick="locationOpen()"><img src="media/buttonicons/locationIcon.png" alt="Exit Icon" width="41px" height="52px"></div>
+    <div class="navIcon floatLeft" id="informationTab" onClick="aboutOpen()"><img src="media/buttonicons/aboutIcon.png" alt="Exit Icon" width="37px" height="52px"></div>
+    <div class="navIcon floatLeft" id="refreshWeather" onClick="weatherRefresh()"><img src="media/buttonicons/refresh.png" alt="Exit Icon" width="52px" height="52px"></div>
   </div>
 
 

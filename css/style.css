@@ -15,7 +15,6 @@ body {
   filter: opacity(30%);
   margin: auto;
   position: absolute;
-  top: 0;
   left: 0;
   bottom: 0;
 }
@@ -29,11 +28,14 @@ body {
 }
 
 .container {
+  /* max-width: fit-content; */
+  margin: auto;
   padding-top: 8vh;
 }
 
 #weatherContainer {
   display: none;
+  height: 80%;
 }
 
 #deniedContainer {
@@ -44,21 +46,31 @@ body {
   display: none;
 }
 
-#customizeContainer
- {
-  display: none;
-}
-
 #aboutContainer {
-  display: none;
-}
-
-#privacyContainer {
   display: none;
 }
 
 #locationContainer {
   display: none;
+  height: 80%;
+}
+
+.navIcon {
+  margin-left: 15.5vw;
+
+}
+
+#bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 3vh;
+  padding: 1.50vh 0 1.50vh 0;
+  filter: opacity(100%);
+  background-color: #0A1319;
+  border-top: 5px solid #FFFFFF;
 }
 
 .floatRight {
@@ -84,6 +96,16 @@ body {
   clear: both;
 }
 
+.lineBreakTop {
+  margin-top: 2.5vh;
+  height: 5px;
+  width: 100px;
+  background-color: #FFFFFF;
+  border-width: 0;
+  border-radius: 5px;
+  clear: both;
+}
+
 .baseTitle {
   font-family: Arial;
   font-size: 2.5vh;
@@ -94,21 +116,12 @@ body {
 
 .baseText {
   font-family: Arial;
-  font-size: 2vh;
+  font-size: 1.75vh;
   font-weight: 300;
   color: #FFFFFF;
   text-align: left;
 }
 
-.switchText {
-  margin-top: 0.5vh;
-  margin-left: 1vh;
-  font-family: Arial;
-  font-size: 2vh;
-  font-weight: 300;
-  color: #FFFFFF;
-  text-align: left;
-}
 
 .baseButton {
   font-family: Arial;
@@ -122,21 +135,15 @@ body {
   margin-top: 3vh;
 }
 
-.space1vh{
+.space1vh {
   padding-top: 1vh;
 }
 
-.space2vh{
+.space2vh {
   padding-top: 2vh;
 }
 
-.themeButton {
-  width: 4vh;
-  height: 4vh;
-  display: block;
-  float: left;
-  margin: 25px;
-  border-radius: 15px;
+.centerText {
   text-align: center;
 }
 
@@ -149,44 +156,8 @@ body {
   margin-right: auto;
 }
 
-#optionsButton {
-  position: absolute;
-  top: 75px;
-  right: 75px;
-  display: none;
-}
-
-#backButton {
-  position: absolute;
-  top: 75px;
-  right: 75px;
-  display: none;
-}
-
-#exitButton {
-  position: absolute;
-  top: 75px;
-  right: 75px;
-  display: none;
-}
-
-#refreshWeather {
-  display: none;
-  width: 100%;
-  height: 3vh;
-  right: 10%;
-  border-radius: 75px;
-  color: #FFFFFF;
-  text-align: center;
-  margin-top: 2vh;
-  padding:.75vh 0 .75vh 0;
-  border: 5px solid #FFFFFF;
-}
-
 #locationMap {
-  border-radius: 75px;
-  width: 100%;
-  height: 100%;
+  border-radius: 25px;
 }
 
 #currentDay {
@@ -206,7 +177,7 @@ body {
 
 #lastUpdate {
   font-family: Arial;
-  font-size: 1vh;
+  font-size: 1.75vh;
   font-weight: 300;
   color: #FFFFFF;
   text-align: center;
@@ -257,9 +228,9 @@ body {
   margin-top: 50px;
 }
 
-#currentWind {
+#currentWind, #currentHumidity{
   font-family: Arial;
-  font-size: 2.5vh;
+  font-size: 2vh;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
@@ -283,52 +254,6 @@ body {
   margin-right: 20px;
 }
 
-.forecastDay {
-  font-family: Arial;
-  font-size: 2.5vh;
-  font-weight: 300;
-  color: #FFFFFF;
+#pingLocation {
   text-align: center;
-}
-
-.onoffswitch {
-    position: relative;
-    width: 114px;
-    float: left;
-    display: block;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select: none;
-}
-.onoffswitch-checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    height: 65px; padding: 0; line-height: 65px;
-    border: 0px solid #FFFFFF; border-radius: 50px;
-    background-color: #B2B2B2;
-}
-.onoffswitch-label:before {
-    content: "";
-    display: block; width: 50px; margin: 7.5px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
-    right: 45px;
-    border-radius: 50px;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label {
-    background-color: #0087CC;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-   border-color: #0087CC;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    right: 0px;
-    background-color: #FFFFFF;
 }

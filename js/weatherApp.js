@@ -88,9 +88,8 @@
       console.log("HereNow: Your current Lon is " + position.coords.longitude)
       myLat = position.coords.latitude;
       myLon = position.coords.longitude;
-      $("#optionsButton").css("display","block");
       $("#weatherContainer").css("display","block");
-      $("#refreshWeather").css("display","block");
+      $("#bottomNav").css("display","block");
       loadOWMAPICurrent();
       generateLocationImage();
       generateMapBackground();
@@ -101,15 +100,9 @@
           console.log("HereNow: Wish you would allow us to grab your location.");
           $("#weatherContainer").css("display","none");
           $("#deniedContainer").css("display","block");
-          $("#optionsContainer").css("display","none");
-          $("#customizeContainer").css("display","none");
           $("#aboutContainer").css("display","none");
-          $("#privacyContainer").css("display","none");
           $("#locationContainer").css("display","none");
-          $("#refreshWeather").css("display","none");
-          $("#optionsButton").css("display","none");
-          $("#backButton").css("display","none");
-          $("#exitButton").css("display","none");
+          $("#bottomNav").css("display","none");
       }
   }
 
@@ -134,7 +127,7 @@
     var latPos = myLat;
     var lonPos = myLon;
 
-    document.getElementById('locationMap').src = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/" + lonPos + "," + latPos + "," + "15,0/650x1000?access_token=" + mapboxAPIKey
+    document.getElementById('locationMap').src = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/" + lonPos + "," + latPos + "," + "15,0/1000x1000?access_token=" + mapboxAPIKey
     console.log('HereNow: Map Box Completed')
   }
 
@@ -157,9 +150,9 @@
         //Grab Current City Name
         var currentLocationName = response.data.name;
         document.getElementById('currentCity').innerHTML = '<img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName;
-        document.getElementById('pingLocation').innerHTML = '<b>Location:</b> <img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName + "<br><b>Latitude:</b> " + latPos.toFixed() + "<br><b>Longitude:</b> " + lonPos.toFixed();
+        document.getElementById('pingLocation').innerHTML = '<b>Location:</b> <img src="media/buttonicons/locationMarker.png"  width="30px" height="40px"/>' + " " + currentLocationName + "<br><b>Latitude:</b> " + latPos.toFixed() + "<b> | Longitude:</b> " + lonPos.toFixed();
 
-        //Grab OpenWeatherMap Update timeout
+        //Grab OpenWeatherMap Update Time
         var rawLastUpdate = response.data.dt;
         console.log("HereNow: Your raw time is " + rawLastUpdate);
         var dateLastUpdate = new Date(rawLastUpdate * 1000);
@@ -256,7 +249,12 @@
           cleanWindDirection =  "N";
         }
 
+        //Humidity
+
+        var cleanHumidity= response.data.main.humidity;
+
         document.getElementById('currentWind').innerHTML = '<img src="media/buttonicons/windIcon.png"  width="52px" height="44px"/> ' + cleanWindDirection+ " " + cleanWindSpeed + 'mph';
+        document.getElementById('currentHumidity').innerHTML = '<img src="media/buttonicons/humidityIcon.png"  width="30px" height="44px"/>' + ' ' + cleanHumidity + '%';
 
 
         //Sunrise and Sunset
