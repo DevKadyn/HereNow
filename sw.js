@@ -1,14 +1,11 @@
-
-self.importScripts('js/inter.js');
-
 // Files to cache
 var cacheName = 'HereNow-v1.5';
 var cacheFiles = [
-'/HereNow/',
-'/HereNow/index.html',
-'/HereNow/style.css',
-'/HereNow/js/weatherApp.js',
-'/HereNow/js/interactive.js'
+'',
+'index.html',
+'css/style.css',
+'js/weatherApp.js',
+'js/interactive.js'
 ];
 
 // Installing Service Worker
